@@ -1,0 +1,40 @@
+
+.doctor_name {
+    color: rgb(62, 57, 108); ;
+    margin: 2px;
+  }
+  
+  
+  .doctor_id {
+    color: rgb(62, 57, 108);
+    margin: 2px;
+  }
+  
+  .specialist {
+    color: rgb(62, 57, 108);
+    margin: 2px;
+  }
+  
+  
+  .line {
+    width: calc(100% - 20px);
+    border-bottom: 1px solid black;
+    position: absolute;
+    margin-top: 6px;
+    margin-bottom: 6px;
+  }
+  
+  .gray_line {
+    border-bottom: 1px solid rgb(146, 146, 146);
+  }
+  
+  .list_item {
+    margin-top: 10px;
+  }
+ /* .search {
+    font-size: 20px ;
+border:solid 0.3em;
+display :inline-block;
+position : relative;
+border-radius: 2.5em;
+  }*/

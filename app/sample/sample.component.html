@@ -1,0 +1,100 @@
+<h3><b>DOCTOR DETAILS</b></h3>
+<form [formGroup]="doctorFormGroup">
+    <label>DOCTOR NAME:</label>
+    <input type="text" placeholder="doctor_name" formControlName="doctor_name"><br>
+    <p style="color: red;"
+      *ngIf="doctorFormGroup.invalid && doctorFormGroup.get('doctor_name')?.invalid && doctorFormGroup.get('doctor_name')?.touched && doctorFormGroup.get('doctor_name')?.getError('required')">
+      you should enter doctor_name </p>
+       <label>DOCTOR ID:</label>
+    <input type="number" placeholder="doctor_id" formControlName="doctor_id"><br>
+    <p style="color: red;"
+    *ngIf="doctorFormGroup.invalid && doctorFormGroup.get('doctor_id')?.invalid && doctorFormGroup.get('doctor_id')?.touched && doctorFormGroup.get('doctor_id')?.getError('required')">
+   you should enter doctor_id  </p>
+    <label>SPECIALIST:</label>
+    <select formControlName="specialist">
+      <option value="">Select Field</option>
+      <option value="Cardiologists">Cardiologists</option>
+      <option value="Audiologists">Audiologists</option>
+      <option value="Dentists">Dentists</option>
+      <option value="ENT specialists">ENT specialists</option>
+      <option value="gynecologists">gynecologists</option>
+      <option value="Psychiatrists">Psychiatrists</option>
+    </select><br>
+    <p style="color: red;"
+    *ngIf="doctorFormGroup.invalid && doctorFormGroup.get('specialist')?.invalid && doctorFormGroup.get('specialist')?.touched && doctorFormGroup.get('specialist')?.getError('required')">
+    You should enter specialist </p>
+    <label>CONTACT NUM:</label>
+     <input type="number" placeholder="Phone_no" formControlName="Phone_no"><b></b>
+    <p style="color: red;"
+    *ngIf="doctorFormGroup.invalid && doctorFormGroup.get('Phone_no')?.invalid && doctorFormGroup.get('Phone_no')?.touched && doctorFormGroup.get('Phone_no')?.getError('required')">
+    You should enter Phone_no </p>
+  <input name="button" class="custom_button" type="button" value="Save" (click)="saveAction()" />
+    <input name="button" class="custom_button" type="button" value="Fetch" (click)="fetchAction()" />
+    <input name="button" class="custom_button" type="button" value="Reset" (click)="resetAction()"/>
+    <input placeholder="search"(keyup)="applyFilter($event)">
+  </form>
+  <div class="line">
+    <a style="color: rgb(0, 255, 0);margin-top: 5px;"></a>
+    </div>
+    <table mat-table [dataSource]="this.shashaService.dataSource" class="mat-elevation-z8">
+       <ng-container matColumnDef="doctor_name">
+          <th mat-header-cell *matHeaderCellDef  style="text-align: center;"><b><a style="font-style:italic;" style="color:rgb(255, 0, 0)"></a></b>doctor_name</th>
+          <td mat-cell *matCellDef="let doctor" style="text-align: center;">
+              <div style="font-weight: 600;">
+                  {{doctor['doctor_name']| uppercase}}
+              </div>
+             
+              {{doctor['doctor_name']}}<br/>
+              
+   </td>
+      </ng-container>
+      <ng-container matColumnDef="doctor_id">
+        <th mat-header-cell *matHeaderCellDef  style="text-align: center;"><b><a style="font-style:italic;" style="color:rgb(255, 0, 0)"></a></b>doctor_id</th>
+        <td mat-cell *matCellDef="let doctor" style="text-align: center;">
+             {{doctor['doctor_id']}}
+            </td>
+        </ng-container>
+      <ng-container matColumnDef="specialist">
+        <th mat-header-cell *matHeaderCellDef  style="text-align: center;"><b><a style="font-style:italic;" style="color:rgb(255, 0, 0)"></a></b>specialist</th>
+        <td mat-cell *matCellDef="let doctor" style="text-align: center;">
+             {{doctor['specialist']}}
+             </td>
+    </ng-container>
+  
+  <ng-container matColumnDef="Phone_no">
+    <th mat-header-cell *matHeaderCellDef  style="text-align: center;"><b><a style="font-style:italic;" style="color:rgb(255, 0, 0)"></a></b>Phone_no</th>
+    <td mat-cell *matCellDef="let doctor" style="text-align: center;">
+         {{doctor['Phone_no']}}
+        </td>
+</ng-container>
+   
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef  style="text-align: center;"><b><a style="font-style:italic;" style="color:rgb(255, 0, 0)"></a></b>ACTIONS</th>
+        <td mat-cell *matCellDef="let doctor" style="text-align: center;">
+          <button mat-button (click)="editAction(doctor)">EDIT</button>
+          </td>
+          </ng-container>
+      
+
+        <ng-container matColumnDef="display">
+          <th mat-header-cell *matHeaderCellDef  style="text-align: center;"><b><a style="font-style:italic;" style="color:rgb(255, 0, 0)"></a></b>DISPLAY</th>
+          <td mat-cell *matCellDef="let doctor" style="text-align: center;">
+            <button mat-button (click)="deleteAction(doctor)">DELETE</button>
+            </td>
+            </ng-container>
+
+        
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let doctor; columns:displayedColumns;"></tr>
+    </table>  
+    
+   <!--<span class={{doctor['doctor_name']}}<br/>
+                  {{doctor['doctor_id']}}<br/>
+                    {{doctor['specialist']}}<br/>
+                    {{doctor['Phone_no']}}<br/>-->  
+<!--<button class="custom_button edit_button_color" (click)="editAction(doctor)">Edit</button>
+<button class="custom_button delete_button_color" (click)="deleteAction(doctor)">Delete</button>
+<div class="line gray_line"></div>
+</div>-->
+
+
